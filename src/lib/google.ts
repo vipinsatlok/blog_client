@@ -1,4 +1,4 @@
-import { google } from "googleapis";
+import { drive_v3, google } from "googleapis";
 import { JWT } from "google-auth-library";
 
 const auth = new JWT({
@@ -19,12 +19,17 @@ async function getDataFromGoogleDrive(folderId: string) {
 
 export async function getAllMarkDownData() {
   const folderId = "1hviP85oBOy6fTwnclH4HoqZFF-PUGHfF";
-  const data = await getDataFromGoogleDrive(folderId);
+  const data = (await getDataFromGoogleDrive(
+    folderId
+  )) as drive_v3.Schema$File[];
 
   const markdownFiles = [];
 
   for (const file of data) {
-    const res = await drive.files.get({ fileId: file.id, alt: "media" });
+    const res = await drive.files.get({
+      fileId: file.id as string,
+      alt: "media",
+    });
     markdownFiles.push({
       name: file.name,
       id: file.id,
@@ -44,7 +49,10 @@ export async function getSingleMarlDownDataWithId(fileId: string) {
   for (const file of data) {
     if (fileId && file.id !== fileId) return null;
 
-    const res = await drive.files.get({ fileId: file.id, alt: "media" });
+    const res = await drive.files.get({
+      fileId: file.id as string,
+      alt: "media",
+    });
     markdownFiles.push({
       name: file.name,
       id: file.id,
