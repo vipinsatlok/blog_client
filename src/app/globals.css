@@ -2,26 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.blog {
+  @apply flex flex-col p-5 gap-5 w-full;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.blog > * {
+  @apply w-full;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.blog img {
+  @apply w-full;
+}
+
+.blog h1 {
+  @apply font-bold text-3xl text-gray-50;
+}
+
+.blog h2 {
+  @apply font-semibold text-xl text-gray-200 relative mb-4;
+  @apply before:content-[''] before:absolute before:-bottom-4 before:rounded before:left-0 before:bg-gray-600 before:w-full before:h-[1px];
+}
+
+.blog > pre {
+  @apply bg-slate-800 hidden w-full p-5 rounded-md text-base overflow-auto;
+}
+
+.blog > pre code {
+  @apply w-full overflow-auto;
 }

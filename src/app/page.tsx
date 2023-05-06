@@ -1,25 +1,18 @@
-import ReactMarkdown from "react-markdown";
-import { Inter } from "next/font/google";
-import { getSingleMarlDownDataWithId, getAllMarkDownData } from "@/lib/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { getBlogs } from "@/lib/google/getGoogleSheet";
+import Link from "next/link";
 
 export default async function Home() {
-  const data = await getAllMarkDownData();
-  if (!data) return <div>Not Found</div>;
+  const data = await getBlogs();
 
-  console.log({ data });
   return (
     <div>
-      {data.map((item) => {
-        return (
-          <>
-            <div>Blogs</div>
-            <div>{item.name}</div>
-            <ReactMarkdown>{item.content}</ReactMarkdown>
-          </>
-        );
-      })}
+      {data.map((item) => (
+        <div key={item.slug}>
+          <Link href={`/blogs/${item.slug}`}>{item.title}</Link>
+          <br></br>
+        </div>
+      ))}
+      <div>Home</div>
     </div>
   );
 }
