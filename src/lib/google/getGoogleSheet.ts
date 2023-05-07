@@ -42,7 +42,22 @@ export const getBlogs = async (category?: string) => {
 
   if (!category) return data;
 
-  return data.filter((item) => item.categories === category) || [];
+  return data.filter((item) => item.category === category) || [];
+};
+
+export const getRandomBlogs = (data: IBlog[], numElements: number) => {
+  var shuffled = data.slice(0),
+    i = data.length,
+    min = i - numElements,
+    temp,
+    index;
+  while (i-- > min) {
+    index = Math.floor((i + 1) * Math.random());
+    temp = shuffled[index];
+    shuffled[index] = shuffled[i];
+    shuffled[i] = temp;
+  }
+  return shuffled.slice(min);
 };
 
 export const getPages = async (category?: string, currentPage?: number) => {

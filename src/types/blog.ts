@@ -6,7 +6,7 @@ export interface IBlog {
   image: string;
   timestamp: Date;
   tag: string[];
-  categories: string;
+  category: string;
 }
 
 export interface ICategory {

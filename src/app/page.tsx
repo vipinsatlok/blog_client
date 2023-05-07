@@ -1,18 +1,16 @@
-import { getBlogs } from "@/lib/google/getGoogleSheet";
-import Link from "next/link";
+import Hero from "@/components/homeSections/Hero";
+import LatestBlogs from "@/components/homeSections/LatestBlogs";
+import TrendingBlogs from "@/components/homeSections/TrendingBlogs";
+import { getBlog, getBlogs } from "@/lib/google/getGoogleSheet";
 
 export default async function Home() {
-  const data = await getBlogs();
+  const blogs = await getBlogs();
 
   return (
-    <div>
-      {data.map((item) => (
-        <div key={item.slug}>
-          <Link href={`/blogs/${item.slug}`}>{item.title}</Link>
-          <br></br>
-        </div>
-      ))}
-      <div>Home</div>
+    <div className="w-full">
+      <Hero />
+      <TrendingBlogs blogs={blogs} />
+      <LatestBlogs blogs={blogs} />
     </div>
   );
 }

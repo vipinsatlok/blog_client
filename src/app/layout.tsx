@@ -2,6 +2,7 @@ import Link from "next/link";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,13 +21,16 @@ export default function RootLayout({
       <body
         className={
           inter.className +
-          "antialiased flex flex-col px-5 text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900"
+          "antialiased flex flex-col text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900"
         }
       >
-        <header className="h-[60px]">
+        <header className="px-5 h-[60px] bg-slate-300 dark:bg-slate-800">
           <Header />
         </header>
-        <main className="flex-1 flex">{children}</main>
+        <main className="px-5 flex-1 flex">{children}</main>
+        <footer className="bg-slate-800 px-10 py-5">
+          <Footer />
+        </footer>
       </body>
     </html>
   );

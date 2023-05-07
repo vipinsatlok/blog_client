@@ -1,16 +1,25 @@
 import Pagination from "@/components/pagination";
-import { getBlogs } from "@/lib/google/getGoogleSheet";
+import { getBlogs, getPages } from "@/lib/google/getGoogleSheet";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Home({ searchParams }) {
-  const category = searchParams?.category;
-  const data = await getBlogs(category);
+interface IProps {
+  searchParams: {
+    page: number;
+    category: string;
+  };
+}
+
+export default async function Home({ searchParams }: IProps) {
+  //
+  const { category, page } = searchParams;
+  const { totalPages } = await getPages(category, page);
+  const blogs = await getBlogs(category);
 
   return (
     <div className="flex flex-col gap-5">
       <h2 className="text-xl font-semibold">All Posts</h2>
-      {data.map((item) => (
+      {blogs.map((item) => (
         <Link
           className="flex items-start gap-5"
           key={item.slug}
@@ -37,7 +46,11 @@ export default async function Home({ searchParams }) {
           </div>
         </Link>
       ))}
-      <Pagination />
+      <Pagination
+        category={category}
+        totalPage={totalPages}
+        currentPage={+page}
+      />
     </div>
   );
 }
