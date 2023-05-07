@@ -7,7 +7,7 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export default function Button({ children, type, ...props }: IProps) {
   return (
     <button
-      className="flex gap-1 bg-slate-700 rounded-md py-1 px-4"
+      className="flex gap-1 bg-black dark:bg-slate-700 rounded-md text-slate-200 hover:text-slate-50 py-2 px-4"
       type={type}
       {...props}
     >

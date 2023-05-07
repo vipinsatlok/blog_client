@@ -7,7 +7,7 @@ export default function Hero() {
         <h1 className="text-6xl text-slate-950 dark:text-slate-50 uppercase  font-bold">
           upgrade your knowledge
         </h1>
-        <h2 className="text-4xl text-slate-400 capitalize font-semibold">
+        <h2 className="text-4xl text-slate-700 dark:text-slate-300 capitalize font-semibold">
           to read awesome articles
         </h2>
       </div>

@@ -32,9 +32,16 @@ export default function BlogCard({
             : title}
         </h3>
         <p className="mt-1 text-xs">
-          {discription.length > discriptionLength
-            ? discription.slice(0, discriptionLength) + " more..."
-            : discription}
+          {discription.length > discriptionLength ? (
+            <>
+              <span>{discription.slice(0, discriptionLength)}</span>
+              <span className="text-slate-900 font-semibold ml-1 dark:text-slate-50">
+                Read more...
+              </span>
+            </>
+          ) : (
+            discription
+          )}
         </p>
       </div>
     </Link>

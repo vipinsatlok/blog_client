@@ -15,26 +15,17 @@ export default function BlogsCard({
   title,
 }: IProps) {
   return (
-    <div className="my-40 px-20 w-full gap-10 flex flex-col">
-      <h2 className="text-4xl text-slate-100 font-semibold">{title}</h2>
-
-      <div className="flex gap-5 w-full justify-center">
-        <div className="flex flex-1 flex-col gap-5">
+    <div className="px-20 mt-10">
+      <div className="p-10 w-full bg-slate-50 rounded-xl dark:bg-slate-800 gap-10 flex flex-col">
+        <h2 className="text-4xl text-slate-800 dark:text-slate-100 font-semibold">
+          {title}
+        </h2>
+        <div className="grid grid-cols-2 gap-5">
           {blogs.map((item) => (
             <BlogCard
               key={item.slug}
               titleLength={titleLength}
               discriptionLength={discriptionLength}
-              {...item}
-            />
-          ))}
-        </div>
-        <div className="flex flex-1 flex-col gap-5">
-          {blogs.map((item) => (
-            <BlogCard
-              key={item.slug}
-              titleLength={50}
-              discriptionLength={80}
               {...item}
             />
           ))}

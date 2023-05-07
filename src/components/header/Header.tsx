@@ -8,21 +8,11 @@ export default function Header() {
       <div className="flex-1 justify-end gap-5 flex">
         <nav>
           <ul className="flex text-base gap-5 font-semibold">
-            <li>
-              <Link href={"/"}>Home</Link>
-            </li>
-            <li>
-              <Link href={"/blogs"}>Blogs</Link>
-            </li>
-            <li>
-              <Link href={"/contact"}>Contact</Link>
-            </li>
-            <li>
-              <Link href={"/about"}>About</Link>
-            </li>
-            <li>
-              <Link href={"/categories"}>Categories</Link>
-            </li>
+            <ThemeList href="/" title="Home" />
+            <ThemeList href="/blogs" title="Blogs" />
+            <ThemeList href="/categories" title="Categories" />
+            <ThemeList href="/contact" title="Contact" />
+            <ThemeList href="/about" title="About" />
           </ul>
         </nav>
         <Theme />
@@ -30,3 +20,16 @@ export default function Header() {
     </div>
   );
 }
+
+interface IListProps {
+  title: string;
+  href: string;
+}
+
+const ThemeList = ({ title, href }: IListProps) => {
+  return (
+    <li className="hover:text-slate-950 hover:dark:text-slate-50">
+      <Link href={href}>{title}</Link>
+    </li>
+  );
+};
